@@ -50,6 +50,17 @@ The test in `tests/example.spec.js`:
 
 These checks require an internet connection to access the Playwright website.
 
+The local locator example in `tests/locator-practices.spec.js` exercises labels and roles for user-facing controls, plus a stable `data-testid` for a decorative chart canvas. Its accessible text summary remains available to assistive technology.
+
+## Locator Practices
+
+- Prefer `getByRole()` with an accessible name for buttons, links, headings, and other semantic elements.
+- Use `getByLabel()` for form controls with associated labels.
+- Use `getByTestId()` when a custom UI surface has no useful semantic locator. Keep test IDs stable and intentional.
+- Avoid long XPath and CSS selectors tied to DOM structure or styling; those are brittle when the UI changes.
+- Use Playwright web-first assertions such as `toBeVisible()` and `toHaveText()` so checks wait for the expected state.
+- Treat AI-suggested locator changes as proposals for review. Do not silently fall back to another selector after the expected locator fails, since that can hide a real UI regression.
+
 ## Browser Projects and Configuration
 
 `playwright.config.js` configures the `tests/` directory, parallel test execution, and an HTML reporter. The suite runs against three desktop browser projects:
