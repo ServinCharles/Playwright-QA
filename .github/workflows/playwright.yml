@@ -1,6 +1,6 @@
 name: Playwright CI
 
-on:
+'on':
   push:
   pull_request:
 
